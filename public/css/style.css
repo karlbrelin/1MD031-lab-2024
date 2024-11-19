@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
+
+
+header {
+    margin: 10px;
+    padding: 5px;
+    height:  200px;
+    overflow: hidden;
+}
+
+header h1 {
+    position: absolute;
+    margin-top: -160px;
+    margin-left: 200px;
+}
+
+header img {
+    opacity: 0.7;
+    width: 100%;
+    height: auto;
+}
+
+body {
+    font-family: Arial;
+}
+
+.allergies {
+    font-weight: bold;
+}
+
+.Burgersection {
+    
+    padding-left: 15px;
+    background-color: black;
+    color: white;
+    border: 2px dashed white;
+
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: 200px 200px 200px;
+}
+
+.burgeroptions {
+    margin: 15px;
+    padding: 10px;
+}
+
+#customerinformation {
+    padding: 15px;
+    border: dashed black;
+}
+
+button:hover {
+    color: green;
+    cursor: crosshair;
+ }
+
+button {
+    margin-bottom: 25px;
+}
+
+input:hover {
+    cursor: crosshair;
+}
+
+#recipient:hover {
+    cursor: crosshair;
+}
+
+section {
+    margin: 25px;
+}
+

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head >
+        <link rel="stylesheet" type="text/css" href="public/css/style.css">
+        <title>Page title shown in window title</title>
+        <meta charset="utf-8"/>
+    </head>
+
+    
+    <body>
+        <header>
+            <img src="public/img/header.jpg">
+            <h1>Välkommen till BurgerOnline</h1>
+        </header>
+        <main>
+            <section class="Burgersection"> 
+                <h3>Våra Burgers</h3>
+                <p>This is the exclusive burgers we at BurgerOnline offer to our customers</p>
+                
+            <div class="wrapper">
+                <div style="display: inline-block;" class="burgeroption">
+                <h3>Hamburgare utan äckelpäckel</h3>
+                <img src="public\img\krabbypat.jpg" style="width: 200px; height: 200px;">
+                <ul class="allergies">
+                    <li>inget äckelpäckel</li>
+                    <li>egg</li>
+                    <li>gluten</li>
+                    <li>beef</li>
+                </ul>
+                </div>
+                
+                <div style="display: inline-block;" class="burgeroption">
+                    <h3>Parisare</h3>
+                    <img src="public/img/parissare.jpeg" style="width: 200px;">
+                    <ul class="allergies">
+                        <li>pork</li>
+                        <li>lactose</li>
+                        <li>gluten</li>
+                    </ul>
+                    </div>
+
+                <div style="display: inline-block;" class="burgeroption">
+                    <h3>Hamburgare med äckelpäckel</h3>
+                    <img src="public/img/äckelpäckel.jpeg" style="width: 200px;">
+                    <ul class="allergies">
+                        <li>äckelpäckel</li>
+                        <li>lactose</li>
+                        <li>gluten</li>
+                        <li>beef</li>
+                    </ul>
+                </div>
+            </div>
+            </section>
+            
+            <section id="customerinformation">
+
+                <h3>Customer information</h3>
+                <p>Neccesary information</p>
+                <p>
+                    <label for="firstname">Full name</label><br>
+                    <input type="text" id="firstname" name="fn" required="required" placeholder="First- and Lastname">
+                </p>
+                <p>
+                    <label for="E-mail">E-mail</label><br>
+                    <input type="text" id="E-mail" name="fn" required="required" placeholder="E-mail adress">
+                </p>
+                <p>
+                    <label for="Street">Street</label><br>
+                    <input type="text" id="Street" name="fn" required="required" placeholder="Street name">
+                </p>
+                <p>
+                    <label for="House">House</label><br>
+                    <input type="number" id="House" name="fn" required="required" placeholder="House number">
+                </p>
+
+                <p>
+                    <label for="recipient">Payment option</label><be>
+                    <div>
+                    <select id="recipient" name="rcp" >
+                        <option>Swish</option>
+                        <option selected>Debit</option>
+                        <option>Klarna</option>
+                        <option>Cash</option>
+                    </select>
+                    </div>
+                </p>
+
+                <p>Gender</p>
+                <input type="radio" id="Male" name="Gender" value="Male">
+                <label for="Male">Male</label><br> 
+
+                <input type="radio" id="Female" name="Gender" value="Female">
+                <label for="Female">Female</label><br>
+
+                <input type="radio" id="Non-binary" name="Gender" value="Non-binary">
+                <label for="Non-binary">Non-binary</label><br> 
+
+                <input type="radio" id="Other" name="Gender" value="Other">
+                <label for="Other">Other</label><br> 
+                
+            </section><br>
+
+            <button type="submit">
+                <img src="public\img\cartoon-illustration-pepperoni-pizza-slice-image-png-7358116966795710nmjkar8to.png" height="20px">
+                Send Info
+            </button>
+            
+        </main>
+        <hr> 
+        <footer style="text-align: center;">&copy; BurgerOnline 2024</footer>
+    </body>
+</html>
