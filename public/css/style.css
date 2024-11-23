@@ -54,7 +54,7 @@ body {
 }
 
 button:hover {
-    color: green;
+    background-color: green;
     cursor: crosshair;
  }
 
