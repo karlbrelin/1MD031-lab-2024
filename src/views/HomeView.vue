@@ -49,7 +49,7 @@
                 <input  v-model="streetName" placeholder="Street name" required="required"/>
 
                 <p>House: {{ houseNumber }}</p>
-                <input  type="number" v-model="House" placeholder="House number" required="required"/>
+                <input type="number" v-model="houseNumber" placeholder="House number" required="required"/>
 
                 <p>Payment option {{ paymentOption }}</p>
 
@@ -75,7 +75,7 @@
                 
             </section><br>
 
-            <button type="submit">
+            <button type="submit" v-on:click="printOrder">
                 <img src="\img\cartoon-illustration-pepperoni-pizza-slice-image-png-7358116966795710nmjkar8to.png" height="20px">
                 Order
             </button>
@@ -142,6 +142,14 @@ export default {
                                 orderItems: ["Beans", "Curry"]
                               }
                  );
+    },
+    printOrder: function () {
+        console.log("Full Name:", this.fullName);
+        console.log("Email:", this.eMail);
+        console.log("Street Name:", this.streetName);
+        console.log("House Number:", this.houseNumber);
+        console.log("Payment Option:", this.paymentOption);
+        console.log("Gender:", this.gender);
     }
   }
 }

@@ -12,10 +12,15 @@
 </template>
 
 <script>
+
 export default {
   name: 'OneBurger',
   props: {
-    burger: Object
+    burger:{
+      type: Object,
+      Required: true
+    } 
+    
   }
 }
 
