@@ -49,39 +49,35 @@
                 <input  v-model="streetName" placeholder="Street name" required="required"/>
 
                 <p>House: {{ houseNumber }}</p>
-                <input  v-model.number="House" placeholder="House number" required="required"/>
+                <input  type="number" v-model="House" placeholder="House number" required="required"/>
 
-                
-                  <p>
-                    <label for="recipient">Payment option</label><br>
-                  </p>
-                  <div> 
-                    <select id="recipient" name="rcp" >
-                        <option>Swish</option>
-                        <option selected>Debit</option>
-                        <option>Klarna</option>
-                        <option>Cash</option>
-                    </select>
-                  </div>
+                <p>Payment option {{ paymentOption }}</p>
 
-                <p>Gender</p>
-                <input type="radio" id="Male" name="Gender" value="Male">
+                <select v-model="paymentOption">
+                  <option>Swish</option>
+                  <option>Debit</option>
+                  <option>Klarna</option>
+                  <option>Cash</option>
+                </select>
+
+                <p>Gender: {{ gender }}</p>
+                <input type="radio"  value="Male" v-model="gender">
                 <label for="Male">Male</label><br> 
 
-                <input type="radio" id="Female" name="Gender" value="Female">
+                <input type="radio"  v-model="gender" name="Gender" value="Female">
                 <label for="Female">Female</label><br>
 
-                <input type="radio" id="Non-binary" name="Gender" value="Non-binary">
+                <input type="radio"  v-model="gender" name="Gender" value="Non-binary">
                 <label for="Non-binary">Non-binary</label><br> 
 
-                <input type="radio" id="Other" name="Gender" value="Other">
+                <input type="radio"  v-model="gender" name="Gender" value="Other">
                 <label for="Other">Other</label><br> 
                 
             </section><br>
 
             <button type="submit">
                 <img src="\img\cartoon-illustration-pepperoni-pizza-slice-image-png-7358116966795710nmjkar8to.png" height="20px">
-                Send Info
+                Order
             </button>
             
         </main>
@@ -122,7 +118,15 @@ export default {
   },
   data: function () {
     return {
-      burgers: menu
+      burgers: menu,
+      paymentOption: "Debit",
+      fullName: "",
+      eMail: "",
+      streetName: "",
+      houseNumber: "",
+      gender: ""
+
+
     }
   },
   methods: {
