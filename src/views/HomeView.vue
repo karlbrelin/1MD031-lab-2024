@@ -1,15 +1,4 @@
 <template>
-<div>
-    <div>
-    <h1>Burgers</h1>
-    <Burger v-for="burger in burgers"
-            v-bind:burger="burger" 
-            v-bind:key="burger.name"/>
-    </div>
-    <div id="map" v-on:click="addOrder">
-    click here
-    </div>
-</div>
 
         <header>
           <img src="\img\header.jpg"> 
@@ -22,15 +11,10 @@
                 <p>This is the exclusive burgers we at BurgerOnline offer to our customers</p>
                 
               <div class="wrapper">
-                <div v-for="burger in burgers" :key="burger.name" class="burgeroption" style="display: inline-block;">
-                  <h3>{{ burger.name }}</h3>
-                  <img :src="burger.url" style="width: 200px; height: 200px;">
-                  <ul>
-                    <li>{{ burger.kCal }} kCal</li>
-                    <li v-if="burger.lactose" class="allergies">Lactose</li>
-                    <li v-if="burger.gluten" class="allergies">Gluten</li>
-                  </ul>
-                </div>
+                  <Burger v-for="burger in burgers"
+                  v-bind:burger="burger" 
+                  v-bind:key="burger.name"
+                  v-on:orderedBurger="addToOrder($event)"/>
               </div>
             </section>
             
@@ -72,8 +56,16 @@
 
                 <input type="radio"  v-model="gender" name="Gender" value="Other">
                 <label for="Other">Other</label><br> 
+
+                <div id="container">
+                  <div id="map" v-on:click="addOrder">
+                    click here
+                  </div>
+                </div>
                 
             </section><br>
+
+
 
             <button type="submit" v-on:click="printOrder">
                 <img src="\img\cartoon-illustration-pepperoni-pizza-slice-image-png-7358116966795710nmjkar8to.png" height="20px">
@@ -109,8 +101,6 @@ const item3 = new MenuItem('Burgare med äckelpäckel', 1100 , "/img/äckelpäck
 const oldMenu = [item1, item2, item3];
 
 
-
-
 export default {
   name: 'HomeView',
   components: {
@@ -124,9 +114,8 @@ export default {
       eMail: "",
       streetName: "",
       houseNumber: "",
-      gender: ""
-
-
+      gender: "",
+      orderedBurgers:{}
     }
   },
   methods: {
@@ -142,6 +131,10 @@ export default {
                                 orderItems: ["Beans", "Curry"]
                               }
                  );
+      },
+
+    addToOrder: function (event) {
+      this.orderedBurgers[event.name] = event.amount;
     },
     printOrder: function () {
         console.log("Full Name:", this.fullName);
@@ -150,16 +143,27 @@ export default {
         console.log("House Number:", this.houseNumber);
         console.log("Payment Option:", this.paymentOption);
         console.log("Gender:", this.gender);
+        console.log("ordered burger", this.orderedBurgers)
     }
   }
 }
 </script>
 
 <style>
+
+   
   #map {
-    width: 300px;
-    height: 300px;
-    background-color: red;
+    background: url("img/polacks.jpg");
+    background-size: auto;
+    width: 1920px;
+    height: 1078px;  
+  }
+
+  #container {
+
+    margin: 1em;
+    overflow: hidden;
+    overflow: scroll;
   }
 
   @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
@@ -201,7 +205,7 @@ body {
 
 .Burgersection {
     
-    padding-left: 15px;
+    padding-left: 1em;
     background-color: black;
     color: white;
     border: 2px dashed white;
@@ -210,7 +214,7 @@ body {
 
 .wrapper {
     display: grid;
-    grid-gap: 50px;
+    grid-gap: 100px;
     grid-template-columns: 200px 200px 200px;
 }
 
