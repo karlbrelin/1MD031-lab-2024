@@ -29,11 +29,14 @@
                 <p>E-mail: {{ eMail }}</p>
                 <input v-model="eMail" placeholder="E-Mail adress" required="required"/>
 
-                <p>Street: {{ streetName }}</p>
-                <input  v-model="streetName" placeholder="Street name" required="required"/>
-
-                <p>House: {{ houseNumber }}</p>
-                <input type="number" v-model="houseNumber" placeholder="House number" required="required"/>
+                
+                <div id="container">
+                  <div id="map" v-on:click="setLocation">
+                    <div class="target" v-bind:style="{ top: location.y + 'px', left: location.x + 'px' }">
+                      T
+                    </div>
+                  </div>
+                </div>
 
                 <p>Payment option {{ paymentOption }}</p>
 
@@ -57,11 +60,6 @@
                 <input type="radio"  v-model="gender" name="Gender" value="Other">
                 <label for="Other">Other</label><br> 
 
-                <div id="container">
-                  <div id="map" v-on:click="addOrder">
-                    click here
-                  </div>
-                </div>
                 
             </section><br>
 
@@ -115,7 +113,8 @@ export default {
       streetName: "",
       houseNumber: "",
       gender: "",
-      orderedBurgers:{}
+      orderedBurgers:{},
+      location: {x: 0, y: 0}
     }
   },
   methods: {
@@ -125,25 +124,47 @@ export default {
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
-      socket.emit("addOrder", { orderId: this.getOrderNumber(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
-                              }
-                 );
+
+      this.location.x = event.clientX - offset.x;
+      this.location.y = event.clientY - offset.y;
+
+
       },
+
+      setLocation: function (event) {
+
+        var offset = { x: event.currentTarget.getBoundingClientRect().left,
+                   y: event.currentTarget.getBoundingClientRect().top };
+
+        this.location.x = event.clientX - offset.x;
+        this.location.y = event.clientY - offset.y;
+        
+        console.log("koordinater ändrade till", this.location.x, this.location.y)
+    },
 
     addToOrder: function (event) {
       this.orderedBurgers[event.name] = event.amount;
     },
+
+
+
     printOrder: function () {
+
         console.log("Full Name:", this.fullName);
         console.log("Email:", this.eMail);
-        console.log("Street Name:", this.streetName);
-        console.log("House Number:", this.houseNumber);
         console.log("Payment Option:", this.paymentOption);
         console.log("Gender:", this.gender);
         console.log("ordered burger", this.orderedBurgers)
+
+        socket.emit("addOrder", { orderId: this.getOrderNumber(),
+                                details: { x: this.location.x, y: this.location.y },
+                                orderItems: this.orderedBurgers,
+                                personalDetails: {name: this.fullName, 
+                                                  mail: this.eMail, 
+                                                  payment: this.paymentOption, 
+                                                  gender: this.gender}
+                              }
+                 );
     }
   }
 }
@@ -156,15 +177,29 @@ export default {
     background: url("img/polacks.jpg");
     background-size: auto;
     width: 1920px;
-    height: 1078px;  
+    height: 1078px;
+    position: relative;
+      
+  }
+
+  #map:hover{
+    cursor: crosshair;
   }
 
   #container {
-
     margin: 1em;
     overflow: hidden;
     overflow: scroll;
   }
+
+  .target {
+    position: absolute;
+    text-align: center;
+    background-color: brown;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%
+    }
 
   @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
 
